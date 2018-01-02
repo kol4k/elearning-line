@@ -1,0 +1,3 @@
+function Pagination(page) {
+    // code.
+}
