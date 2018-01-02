@@ -124,18 +124,6 @@
                                     <input type="text" name="description" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Rank Class</label>
-                                <div class="col-md-9">
-                                    <input type="text" name="name" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Pelajaran</label>
-                                <div class="col-md-9">
-                                    <input type="text" name="name" class="form-control">
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
