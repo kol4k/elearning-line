@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TipeUjian extends Migration
+class Users extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,7 @@ class TipeUjian extends Migration
      */
     public function up()
     {
-        Schema::create('tipe_ujian', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id_tipe',11);
-            $table->string('nama',90);
-        });
+        //
     }
 
     /**

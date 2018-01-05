@@ -108,27 +108,70 @@
                     <span class="caption-subject font-dark bold uppercase">Add Category</span>
                 </div>
             </div>
-            <div class="portlet-body">
-                <div class="row">
-                    <form class="form-horizontal">
-                        <div class="form-body">
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" name="name" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Description</label>
-                                <div class="col-md-9">
-                                    <input type="text" name="description" class="form-control">
-                                </div>
+            <div class="portlet-body form">
+                <form role="form" class="form-horizontal" method="POST" action="{{ Route('category.store') }}">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="name" placeholder="Name of category.">
                             </div>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Description</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="description" placeholder="Description for the category.">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <button type="reset" class="btn default">Cancel</button>
+                        <button type="submit" class="btn green">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-dark bold uppercase">Add Task</span>
                 </div>
+            </div>
+            <div class="portlet-body form">
+                <form role="form" class="form-horizontal" method="POST" action="{{ Route('task.store') }}">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Question</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="question" placeholder="Asking something to the users.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Answer</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="answer" placeholder="The answer is ...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Category</label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="category" id="category">
+                                @foreach($category as $data)
+                                    <option value="{{ $data['id'] }}">{{ $data['name'] }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions right">
+                        <button type="reset" class="btn default">Cancel</button>
+                        <button type="submit" class="btn green">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@endsection 

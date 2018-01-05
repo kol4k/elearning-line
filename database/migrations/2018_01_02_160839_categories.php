@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Pelajaran extends Migration
+class Categories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class Pelajaran extends Migration
      */
     public function up()
     {
-        Schema::create('pelajaran', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id_pelajaran',11);
-            $table->string('nama',255);
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name',201);
+            $table->text('description');
+            $table->timestamps();
         });
     }
 

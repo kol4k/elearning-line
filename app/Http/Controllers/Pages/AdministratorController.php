@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 class AdministratorController extends Controller
 {
+    // public function __construct(CategoryController $category)
+    // {
+    //     $this->category = $category;
+    // }
     public function dashboard() 
     {
         return view('v1.administrators.pages.dashboard');
@@ -19,6 +23,7 @@ class AdministratorController extends Controller
 
     public function examPage() 
     {
-        return view('v1.administrators.pages.exam');
+        $cat = new \App\Http\Controllers\API\V1\CategoryController;
+        return view('v1.administrators.pages.exam',['category' => $cat->index()]);
     }
 }
