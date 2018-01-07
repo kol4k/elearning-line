@@ -109,25 +109,29 @@
 							'</pre>',
 						confirmButtonText: 'Confirm!',
 						showCancelButton: true,
-                        preConfirm: function(send, question, category,a ,b ,c ,d ,answer)
+                        preConfirm: function(send)
                         {
-                            return new Promise(function(result, resolve, reject)
+                            return new Promise(function(resolve, reject)
                             {
                                 setTimeout(function() {
-                                    alert(question);
                                     $.post("{{ route('task.store') }}", {
-                                        // question: JSON.stringify(result) + JSON.stringify(result[3]),
-                                        // category: category
-                                    },
-                                    function(data,status) {
-                                        alert("ok");
-                                    });
+                                        category: result[0],
+                                        question: result[1],
+                                        a: result[2],
+                                        b: result[3],
+                                        c: result[4],
+                                        d: result[5],
+                                        answer: result[6],
+                                    }).done(function() {
+                                        swal({
+                                            type: 'success',
+                                            title: 'Request finished!',
+                                            html: 'Data inputted.'
+                                        });
+                                    }).catch(swal.noop);
                                 }, 2000);
                             });
                         }
-					}, function()
-					{
-						swal.resetDefaults();
 					});
 				}).catch(function()
 				{

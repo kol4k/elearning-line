@@ -19,6 +19,7 @@ class Users extends Migration
             $table->string('username',30);
             $table->string('password',254);
             $table->string('email',50);
+            $table->text('token');
             $table->integer('access')->unsigned();
             $table->foreign('access')->references('id')->on('categories');
             $table->timestamps();
