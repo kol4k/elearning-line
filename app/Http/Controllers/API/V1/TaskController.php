@@ -39,6 +39,10 @@ class TaskController extends Controller
     {
         $data = Task::create([
             'question' => $request->input('question'),
+            'a' => $request->input('a'),
+            'b' => $request->input('b'),
+            'c' => $request->input('c'),
+            'd' => $request->input('d'),
             'answer' => $request->input('answer'),
             'category' => $request->input('category')
         ]);
@@ -79,6 +83,10 @@ class TaskController extends Controller
     {
         $data = Task::find($id)->update([
             'question' => $request->input('question'),
+            'a' => $request->input('a'),
+            'b' => $request->input('b'),
+            'c' => $request->input('c'),
+            'd' => $request->input('d'),
             'answer' => $request->input('answer'),
             'category' => $request->input('category')
         ]);

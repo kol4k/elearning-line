@@ -13,7 +13,7 @@ class AdministratorController extends Controller
     // }
     public function dashboard() 
     {
-        return view('v1.administrators.pages.dashboard');
+        return view('v1.administrators.pages.exam');
     }
 
     public function usersPage() 
@@ -24,6 +24,6 @@ class AdministratorController extends Controller
     public function examPage() 
     {
         $cat = new \App\Http\Controllers\API\V1\CategoryController;
-        return view('v1.administrators.pages.exam',['category' => $cat->index()]);
+        return view('v2.administrators.pages.exam',['category' => $cat->index()]);
     }
 }

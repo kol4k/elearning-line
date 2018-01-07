@@ -9,7 +9,7 @@ class Task extends Model
     protected $table = "tasks";
     protected $primaryKey = "id";
     protected $fillable = [
-        'question','answer','category'
+        'question','a','b','c','d','answer','category'
     ];
 
     public function task()
