@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\User as U;
+use App\Model\Access;
 
-class UserController extends Controller
+class AccessController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = U::all();
+        $data = Access::all();
         return $data;
     }
 
@@ -37,12 +37,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = U::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'email' => $request->email,
-            'access' => $request->role
+        $data = Access::create([
+            'name' => $request->access
         ]);
         return $data;
     }
@@ -55,7 +51,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Access::find($id);
+        return $data;
     }
 
     /**
@@ -66,8 +63,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data = U::find($id);
-        return $data;
+        //
     }
 
     /**
@@ -79,12 +75,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = U::find($id)->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'email' => $request->email,
-            'access' => $request->role
+        $data = Access::find($id)->update([
+            'name' => $request->access
         ]);
         return $data;
     }
@@ -97,7 +89,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $data = U::find($id)->delete();
+        $data = Access::find($id)->delete();
         return $data;
     }
 }

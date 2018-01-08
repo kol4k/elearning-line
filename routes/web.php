@@ -23,3 +23,6 @@ Route::group(['prefix' => '/'], function () {
         Route::get('/','Pages\AdministratorController@examPage')->name('exam.index');
     });
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
