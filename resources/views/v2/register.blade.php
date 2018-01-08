@@ -34,7 +34,7 @@
 								</div>
 								<p class="lead">Create an account</p>
 							</div>
-							<form class="form-auth-small" action="{{ Route('register') }}">
+							<form class="form-auth-small" method="POST" action="{{ Route('register') }}">
 								<div class="form-group">
 									<label for="signup-email" class="control-label sr-only">Email</label>
 									<input type="email" class="form-control" id="email" name="email" placeholder="Your email">

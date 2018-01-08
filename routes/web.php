@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::group(['prefix' => '/'], function () {
+    Route::get('/register', 'Pages\GuestController@register')->name('page.register');
     Route::get('/','Pages\AdministratorController@dashboard');
     Route::group(['prefix' => '/users'], function () {
         Route::get('/','Pages\AdministratorController@usersPage')->name('users.index');

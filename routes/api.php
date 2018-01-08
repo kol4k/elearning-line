@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/register', 'API\V1\UserController@store')->name('register');
+
 Route::group(['prefix' => '/v1'], function () {
     Route::group(['prefix' => '/task'], function () {
         Route::post('/','API\V1\TaskController@store')->name('task.store');
