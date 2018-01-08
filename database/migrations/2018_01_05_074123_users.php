@@ -20,8 +20,8 @@ class Users extends Migration
             $table->string('password',254);
             $table->string('email',50);
             $table->text('token')->nullable();
-            $table->integer('access')->unsigned();
-            $table->foreign('access')->references('id')->on('categories');
+            $table->integer('access')->unsigned()->default(2);
+            $table->foreign('access')->references('id')->on('access');
             $table->timestamps();
         });
     }
