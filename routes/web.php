@@ -16,12 +16,14 @@
 // });
 Route::group(['prefix' => '/'], function () {
     Route::get('/register', 'Pages\GuestController@register')->name('page.register');
+    
     Route::get('/','Pages\AdministratorController@dashboard');
     Route::group(['prefix' => '/users'], function () {
         Route::get('/','Pages\AdministratorController@usersPage')->name('users.index');
     });
     Route::group(['prefix' => '/exam'], function () {
         Route::get('/','Pages\AdministratorController@examPage')->name('exam.index');
+        Route::get('/{id}','Pages\AdministratorController@examEdit')->name('exam.edit');
     });
 });
 // Auth::routes();

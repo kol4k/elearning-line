@@ -7,21 +7,21 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<!-- VENDOR CSS -->
-		<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/vendor/themify-icons/css/themify-icons.css">
-		<link rel="stylesheet" href="assets/vendor/pace/themes/orange/pace-theme-minimal.css">
+		<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/vendor/themify-icons/css/themify-icons.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/vendor/pace/themes/orange/pace-theme-minimal.css') }}">
         @yield('css')
 		<!-- MAIN CSS -->
-		<link rel="stylesheet" href="assets/css/main.min.css">
-		<link rel="stylesheet" href="assets/css/skins/sidebar-nav-darkgray.css" type="text/css">
-		<link rel="stylesheet" href="assets/css/skins/navbar3.css" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/main.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/skins/sidebar-nav-darkgray.css') }}" type="text/css">
+		<link rel="stylesheet" href="{{ asset('assets/css/skins/navbar3.css') }}" type="text/css">
 		<!-- FOR DEMO PURPOSES ONLY. You should/may remove this in your project -->
-		<link rel="stylesheet" href="assets/css/demo.min.css">
-		<link rel="stylesheet" href="demo-panel/style-switcher.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/demo.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('demo-panel/style-switcher.css') }}">
 		<!-- ICONS -->
-		<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
+		<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicon.png') }}">
 	</head>
 	<body>
 		<!-- WRAPPER -->
@@ -30,7 +30,7 @@
 			<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="brand">
 					<a href="index.html">
-						<img src="assets/img/logo-white.png" alt="Klorofil Pro Logo" class="img-responsive logo">
+						<img src="{{ asset('assets/img/logo-white.png') }}" alt="Klorofil Pro Logo" class="img-responsive logo">
 					</a>
 				</div>
 				<div class="container-fluid">
@@ -114,7 +114,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="assets/img/user.png" alt="Avatar">
+									<img src="{{ asset('assets/img/user.png') }}" alt="Avatar">
 									<span>Samuel</span>
 								</a>
 								<ul class="dropdown-menu logged-user-menu">
@@ -409,11 +409,11 @@
 		</div>
 		<!-- END WRAPPER -->
 		<!-- Javascript -->
-		<script src="assets/vendor/jquery/jquery.min.js"></script>
-		<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="assets/vendor/pace/pace.min.js"></script>
+		<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/vendor/pace/pace.min.js') }}"></script>
         @yield('js')
-		<script src="assets/scripts/klorofilpro-common.min.js"></script>
+		<script src="{{ asset('assets/scripts/klorofilpro-common.min.js') }}"></script>
 	</body>
 
 </html>

@@ -30,4 +30,9 @@ class AdministratorController extends Controller
         $task = $this->task->index();
         return view('v2.administrators.pages.exam',['category' => $cat->index(), 'task' => $task]);
     }
+
+    public function examEdit($id)
+    {
+        return view('v2.administrators.pages.examedit',['category' => $this->category->index(), 'data' => $this->category->show($id)]);
+    }
 }

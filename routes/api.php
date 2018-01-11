@@ -25,7 +25,9 @@ Route::group(['prefix' => '/v1'], function () {
     });
     Route::group(['prefix' => '/category'], function () {
         Route::post('/','API\V1\CategoryController@store')->name('category.store');
+        Route::post('/','API\V1\CategoryController@update')->name('category.update');
         Route::get('/','API\V1\CategoryController@index')->name('category.all');
+        Route::get('/{id}','API\V1\CategoryController@destroy')->name('category.destroy');
     });
 });
 

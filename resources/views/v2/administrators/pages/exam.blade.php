@@ -467,7 +467,7 @@
                                         <span class="actions">
                                             <a href="#"><i class="fa fa-eye"></i></a>
                                             <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="#"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ Route('category.destroy',$v->id) }}"><i class="fa fa-trash"></i></a>
                                         </span>
                                     </td>
                                 </tr>

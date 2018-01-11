@@ -91,7 +91,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = Cat::findOrFail($id)->destroy();
-        return $data;
+        $data = Cat::findOrFail($id)->delete();
+        return back()->withInput();
     }
 }
