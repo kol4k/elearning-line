@@ -1,6 +1,6 @@
 @extends('v2.administrators.layouts.app')
 
-@section('title','Exam')
+@section('title','Tasks')
 
 @section('css')
 <link rel="stylesheet" href="assets/vendor/datatables/css-main/jquery.dataTables.min.css">
@@ -114,7 +114,7 @@
                             return new Promise(function(resolve, reject)
                             {
                                 setTimeout(function() {
-                                    $.post("{{ route('task.store') }}", {
+                                    $.post("{{ route('tasks.store') }}", {
                                         category: result[0],
                                         question: result[1],
                                         a: result[2],
@@ -308,137 +308,61 @@
                 </div>
             </div>
             <div class="col-md-12">
+            @if(Session::has('delete') == 'success')
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-check-circle"></i> Your data have been succesfully delete.
+                </div>
+            @endif
+            @if(Session::has('update') == 'success')
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-check-circle"></i> Your data have been succesfully saved.
+                </div>
+            @endif
                 <div class="panel">
                     <div class="panel-heading">
                         <h2 class="panel-title">Tasks</h2>
                         <div class="right">
-                            <button type="button" class="btn btn-primary" id="add-task"><i class="fa fa-save"></i>Add New</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{{ Route('tasks.create') }}';"><i class="fa fa-save"></i>Add New</button>
                         </div>
                     </div>
                     <div class="panel-body">
                         <table id="tasks" class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Browser</th>
-                                    <th>Operating System</th>
-                                    <th>Visits</th>
-                                    <th>New Visits</th>
-                                    <th>Bounce Rate</th>
+                                    <th>ID</th>
+                                    <th>Question</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>Answer</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($task as $v)
                                 <tr>
-                                    <td>Chrome</td>
-                                    <td>Macintosh</td>
-                                    <td>360</td>
-                                    <td>82.78%</td>
-                                    <td>87.77%</td>
+                                    <td>{{ $v->id }}</td>
+                                    <td>{!! $v->question !!}</td>
+                                    <td>{{ $v->a }}</td>
+                                    <td>{{ $v->b }}</td>
+                                    <td>{{ $v->c }}</td>
+                                    <td>{{ $v->d }}</td>
+                                    <td>{{ $v->answer }}</td>
+                                    <td>
+                                        <span class="actions">
+                                            <a href="{{ Route('tasks.edit', $v->id) }}"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ Route('tasks.destroy', $v->id) }}"><i class="fa fa-trash"></i></a>
+                                        </span>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Windows</td>
-                                    <td>582</td>
-                                    <td>87.24%</td>
-                                    <td>90.12%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Linux</td>
-                                    <td>172</td>
-                                    <td>45.21%</td>
-                                    <td>48.81%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>iOS</td>
-                                    <td>86</td>
-                                    <td>35.23%</td>
-                                    <td>44.21%</td>
-                                </tr>
-                                <tr>
-                                    <td>Firefox</td>
-                                    <td>Windows</td>
-                                    <td>280</td>
-                                    <td>63.12%</td>
-                                    <td>89.34%</td>
-                                </tr>
-                                <tr>
-                                    <td>Firefox</td>
-                                    <td>Android</td>
-                                    <td>236</td>
-                                    <td>58.02%</td>
-                                    <td>76.19%</td>
-                                </tr>
-                                <tr>
-                                    <td>Internet Explorer</td>
-                                    <td>Windows</td>
-                                    <td>145</td>
-                                    <td>45.23%</td>
-                                    <td>94.65%</td>
-                                </tr>
-                                <tr>
-                                    <td>Safari</td>
-                                    <td>Macintosh</td>
-                                    <td>103</td>
-                                    <td>22.12%</td>
-                                    <td>52.43%</td>
-                                </tr>
-                                <tr>
-                                    <td>Safari</td>
-                                    <td>iOS</td>
-                                    <td>302</td>
-                                    <td>56.98%</td>
-                                    <td>45.53%</td>
-                                </tr>
-                                <tr>
-                                    <td>Opera</td>
-                                    <td>Windows</td>
-                                    <td>328</td>
-                                    <td>67.12%</td>
-                                    <td>78.34%</td>
-                                </tr>
-                                <tr>
-                                    <td>Opera</td>
-                                    <td>Macintosh</td>
-                                    <td>22</td>
-                                    <td>87.21%</td>
-                                    <td>79.81%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>iOS</td>
-                                    <td>45</td>
-                                    <td>23.21%</td>
-                                    <td>34.67%</td>
-                                </tr>
-                                <tr>
-                                    <td>Firefox</td>
-                                    <td>Windows</td>
-                                    <td>67</td>
-                                    <td>27.11%</td>
-                                    <td>78.08%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Macintosh</td>
-                                    <td>120</td>
-                                    <td>80.78%</td>
-                                    <td>80.77%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Windows</td>
-                                    <td>682</td>
-                                    <td>89.44%</td>
-                                    <td>95.32%</td>
-                                </tr>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Windows</td>
-                                    <td>172</td>
-                                    <td>43.11%</td>
-                                    <td>46.89%</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -465,9 +389,8 @@
                                     <td>{{ $v->description }}</td>
                                     <td>
                                         <span class="actions">
-                                            <a href="#"><i class="fa fa-eye"></i></a>
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{ Route('category.destroy',$v->id) }}"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ Route('categories.edit', $v->id) }}"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ Route('categories.destroy', $v->id) }}"><i class="fa fa-trash"></i></a>
                                         </span>
                                     </td>
                                 </tr>
@@ -483,7 +406,8 @@
                         <h2 class="panel-title">Add Category</h2>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ Route('category.store') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ Route('categories.store') }}">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="name" class="col-sm-3 control-label">Name</label>
                                 <div class="col-sm-9">

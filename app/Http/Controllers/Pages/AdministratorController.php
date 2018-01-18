@@ -19,20 +19,35 @@ class AdministratorController extends Controller
         return view('v1.administrators.pages.exam');
     }
 
-    public function usersPage() 
+    public function myProfile()
     {
-        return view('v1.administrators.pages.users');
+        return view('v2.administrators.pages.myprofile');
     }
 
-    public function examPage() 
+    public function usersPage() 
+    {
+        return view('v2.administrators.pages.user');
+    }
+
+    public function taskPage() 
     {
         $cat = $this->category;
         $task = $this->task->index();
-        return view('v2.administrators.pages.exam',['category' => $cat->index(), 'task' => $task]);
+        return view('v2.administrators.pages.task',['category' => $cat->index(), 'task' => $task]);
     }
 
-    public function examEdit($id)
+    public function taskNew()
     {
-        return view('v2.administrators.pages.examedit',['category' => $this->category->index(), 'data' => $this->category->show($id)]);
+        return view('v2.administrators.pages.taskstore', ['task' => $this->task->index(), 'category' => $this->category->index()]);
+    }
+
+    public function taskEdit($id)
+    {
+        return view('v2.administrators.pages.taskedit', ['task' => $this->task->index(), 'data' => $this->task->show($id), 'category' => $this->category->index()]);
+    }
+
+    public function categoryEdit($id)
+    {
+        return view('v2.administrators.pages.categoryedit',['category' => $this->category->index(), 'data' => $this->category->show($id)]);
     }
 }

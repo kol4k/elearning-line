@@ -17,6 +17,17 @@
 <script src="{{ asset('assets/vendor/datatables-tabletools/js/dataTables.tableTools.js') }}"></script>
 <script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.js') }}"></script>
 <script>
+    function edit(n) {
+        url = 'http://localhost:8000/api/v1/categories/';
+        $.get(url + n, function(data) {
+            // $('#e').html('<center><img src="{{ asset("assets/img/loading.svg") }}"></center>').show();
+        }).done(function (data) {
+            $('#name').val(data.name); // textarea
+            // $('#description').text(data.description);
+            $('#formedit').prop('action', 'http://localhost:8000/categories/' + n);
+            console.log(url);
+        });
+    }
     function myTable($v) {
         $($v).dataTable(
             {
@@ -49,23 +60,33 @@
     </div>
     <div class="container-fluid">
         <div class="row">
+            @if(Session::has('update') == 'success')
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-check-circle"></i> Your data have been succesfully saved.
+                </div>
+            @endif
             <div class="col-md-6">
-                <div class="panel">
+                <div class="panel" id="edit">
                     <div class="panel-heading">
                         <h2 class="panel-title">Edit Category</h2>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="http://localhost:8000/api/v1/category">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ Route('categories.update', $data->id ) }}">
+                        {{ method_field('PUT') }}
+                        {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="name" class="col-sm-3 control-label">Name</label>
                                 <div class="col-sm-9">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                <input type="text" class="form-control" name="name" id="name" value="{{ $data->name }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="description" class="col-sm-3 control-label">Description</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="description" id="description" rows="5" cols="30" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="5" cols="30" placeholder="Message">{{ $data->description }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -98,9 +119,8 @@
                                     <td>{{ $v->description }}</td>
                                     <td>
                                         <span class="actions">
-                                            <a href="#"><i class="fa fa-eye"></i></a>
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{ Route('category.destroy',$v->id) }}"><i class="fa fa-trash"></i></a>
+                                            <a href="#edit" onclick="edit('{{ $v->id }}')"><i class="fa fa-pencil"></i></a>
+                                            <a href="{{ Route('categories.destroy',$v->id) }}"><i class="fa fa-trash"></i></a>
                                         </span>
                                     </td>
                                 </tr>

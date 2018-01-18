@@ -1,22 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\API\V1;
+namespace App\Http\Controllers\WEB\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Task;
+use App\Http\Controllers\API\V1\TaskController as TC;
+use App\Http\Controllers\API\V1\CategoryController as Cat;
 
 class TaskController extends Controller
 {
+    /**
+     * Construct API
+     */
+    public function __construct(TC $task, Cat $category)
+    {
+        $this->task = $task;
+        $this->category = $category;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($pagination = null)
+    public function index()
     {
-        $data = Task::all();
-        return $data;
+        $cat = $this->category;
+        $task = $this->task->index();
+        return view('v2.administrators.pages.task',['category' => $cat->index(), 'task' => $task]);
     }
 
     /**
@@ -26,7 +38,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('v2.administrators.pages.taskstore', ['task' => $this->task->index(), 'category' => $this->category->index()]);
     }
 
     /**
@@ -37,16 +49,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Task::create([
-            'question' => $request->input('question'),
-            'a' => $request->input('a'),
-            'b' => $request->input('b'),
-            'c' => $request->input('c'),
-            'd' => $request->input('d'),
-            'answer' => $request->input('answer'),
-            'category' => $request->input('category')
-        ]);
-        return $data; 
+        $data = $this->task->store($request);
+        return redirect()->back()->with('update', 'success');
     }
 
     /**
@@ -57,8 +61,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $data = Task::find($id);
-        return $data;
+        //
     }
 
     /**
@@ -69,7 +72,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('v2.administrators.pages.taskedit', ['task' => $this->task->index(), 'data' => $this->task->show($id), 'category' => $this->category->index()]);
     }
 
     /**
@@ -81,16 +84,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Task::find($id)->update([
-            'question' => $request->input('question'),
-            'a' => $request->input('a'),
-            'b' => $request->input('b'),
-            'c' => $request->input('c'),
-            'd' => $request->input('d'),
-            'answer' => $request->input('answer'),
-            'category' => $request->input('category')
-        ]);
-        return $data;
+        $data = $this->task->update($request, $id);
+        return redirect()->back()->with('update', 'success');
     }
 
     /**
@@ -101,7 +96,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $data = Task::find($id)->delete();
-        return $data;
+        $data = $this->task->destroy($id);
+        return redirect()->back()->with('delete', 'success');
     }
 }

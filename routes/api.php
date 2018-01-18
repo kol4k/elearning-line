@@ -19,16 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', 'API\V1\UserController@store')->name('register');
 
 Route::group(['prefix' => '/v1'], function () {
-    Route::group(['prefix' => '/task'], function () {
-        Route::post('/','API\V1\TaskController@store')->name('task.store');
-        Route::get('/','API\V1\TaskController@index')->name('task.all');
-    });
-    Route::group(['prefix' => '/category'], function () {
-        Route::post('/','API\V1\CategoryController@store')->name('category.store');
-        Route::post('/','API\V1\CategoryController@update')->name('category.update');
-        Route::get('/','API\V1\CategoryController@index')->name('category.all');
-        Route::get('/{id}','API\V1\CategoryController@destroy')->name('category.destroy');
-    });
+    Route::resource('tasks', 'API\V1\TaskController');
+    Route::resource('categories', 'API\V1\CategoryController');
 });
 
 Route::get('/get-message', function (Request $request) {    
