@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('v2.administrators.pages.category', ['data' => $this->category->index()]);
     }
 
     /**

@@ -135,7 +135,7 @@
 						<li class="menu-group">Main</li>
 						<!-- <li><a href="{{ Route('tasks.index') }}"><i class="ti-dashboard"></i> <span class="title">Dashboard</span></a></li>						 -->
 						<li><a href="{{ Route('tasks.index') }}"><i class="ti-agenda"></i> <span class="title">Tasks</span></a></li>
-						<li><a href="typography.html"><i class="ti-folder"></i> <span class="title">Categories</span></a></li>
+						<li><a href="{{ Route('categories.index') }}"><i class="ti-folder"></i> <span class="title">Categories</span></a></li>
 						<li class="menu-group">Configuration</li>
 						<li><a href="{{ Route('tasks.index') }}"><i class="ti-settings"></i> <span class="title">Web</span></a></li>												
 						<!-- <li class="panel">
